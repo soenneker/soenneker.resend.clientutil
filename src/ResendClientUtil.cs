@@ -20,9 +20,10 @@ public sealed class ResendClientUtil : IResendClientUtil
 
     public ResendClientUtil(IResendHttpClient httpClientUtil, IConfiguration configuration)
     {
-        _client = new AsyncSingleton<ResendOpenApiClient>(async (token, _) =>
+        _client = new AsyncSingleton<ResendOpenApiClient>(async token =>
         {
-            HttpClient httpClient = await httpClientUtil.Get(token).NoSync();
+            HttpClient httpClient = await httpClientUtil.Get(token)
+                                                        .NoSync();
 
             var apiKey = configuration.GetValueStrict<string>("Resend:ApiKey");
 
