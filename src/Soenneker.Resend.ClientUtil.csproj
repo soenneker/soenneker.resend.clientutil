@@ -14,7 +14,7 @@
         <AssemblyName>Soenneker.Resend.ClientUtil</AssemblyName>
         <PackageId>Soenneker.Resend.ClientUtil</PackageId>
         <PackageTags>resend clientutil email api smtp kiota singleton threadsafe resendclientutil kiotaclient csharp dotnet c# .net</PackageTags>
-        <Copyright>Copyright © 2025 Jake Soenneker</Copyright>
+        <Copyright>Copyright © 2025-2026 Jake Soenneker</Copyright>
         <Authors>Jake Soenneker</Authors>
         <Company>https://soenneker.com</Company>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
