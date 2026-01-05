@@ -17,20 +17,24 @@ namespace Soenneker.Resend.ClientUtil;
 public sealed class ResendClientUtil : IResendClientUtil
 {
     private readonly AsyncSingleton<ResendOpenApiClient> _client;
+    private readonly IResendHttpClient _httpClientUtil;
+    private readonly string _apiKey;
 
     public ResendClientUtil(IResendHttpClient httpClientUtil, IConfiguration configuration)
     {
-        _client = new AsyncSingleton<ResendOpenApiClient>(async token =>
-        {
-            HttpClient httpClient = await httpClientUtil.Get(token)
-                                                        .NoSync();
+        _httpClientUtil = httpClientUtil;
+        _apiKey = configuration.GetValueStrict<string>("Resend:ApiKey");
+        _client = new AsyncSingleton<ResendOpenApiClient>(CreateClient);
+    }
 
-            var apiKey = configuration.GetValueStrict<string>("Resend:ApiKey");
+    private async ValueTask<ResendOpenApiClient> CreateClient(CancellationToken token)
+    {
+        HttpClient httpClient = await _httpClientUtil.Get(token)
+                                                     .NoSync();
 
-            var requestAdapter = new HttpClientRequestAdapter(new BearerAuthenticationProvider(apiKey), httpClient: httpClient);
+        var requestAdapter = new HttpClientRequestAdapter(new BearerAuthenticationProvider(_apiKey), httpClient: httpClient);
 
-            return new ResendOpenApiClient(requestAdapter);
-        });
+        return new ResendOpenApiClient(requestAdapter);
     }
 
     public ValueTask<ResendOpenApiClient> Get(CancellationToken cancellationToken = default)
