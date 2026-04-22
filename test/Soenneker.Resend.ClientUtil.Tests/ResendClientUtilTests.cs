@@ -1,20 +1,19 @@
-﻿using Soenneker.Resend.ClientUtil.Abstract;
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.Resend.ClientUtil.Abstract;
+using Soenneker.Tests.HostedUnit;
 
 namespace Soenneker.Resend.ClientUtil.Tests;
 
-[Collection("Collection")]
-public sealed class ResendClientUtilTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public sealed class ResendClientUtilTests : HostedUnitTest
 {
     private readonly IResendClientUtil _kiotaclient;
 
-    public ResendClientUtilTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public ResendClientUtilTests(Host host) : base(host)
     {
         _kiotaclient = Resolve<IResendClientUtil>(true);
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
