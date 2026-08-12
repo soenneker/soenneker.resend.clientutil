@@ -45,7 +45,7 @@
 
     <ItemGroup>
         <PackageReference Include="Soenneker.Kiota.BearerAuthenticationProvider" Version="4.0.44" />
-        <PackageReference Include="Soenneker.Resend.Client" Version="4.0.249" />
+        <PackageReference Include="Soenneker.Resend.Client" Version="4.0.250" />
         <PackageReference Include="Soenneker.Resend.OpenApiClient" Version="4.0.118" />
     </ItemGroup>
 </Project>
