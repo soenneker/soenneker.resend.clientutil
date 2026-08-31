@@ -6,12 +6,12 @@ using Soenneker.Resend.ClientUtil.Abstract;
 namespace Soenneker.Resend.ClientUtil.Registrars;
 
 /// <summary>
-/// A .NET thread-safe singleton HttpClient for GitHub
+/// Registers the lazily initialized Resend API client.
 /// </summary>
 public static class ResendClientUtilRegistrar
 {
     /// <summary>
-    /// Adds <see cref="ResendClientUtil"/> as a singleton service. <para/>
+    /// Adds the Resend API client utility as a singleton service. <para/>
     /// </summary>
     public static IServiceCollection AddResendClientUtilAsSingleton(this IServiceCollection services)
     {
@@ -22,7 +22,7 @@ public static class ResendClientUtilRegistrar
     }
 
     /// <summary>
-    /// Adds <see cref="ResendClientUtil"/> as a scoped service. <para/>
+    /// Adds the Resend API client utility as a scoped service backed by the singleton HTTP client provider. <para/>
     /// </summary>
     public static IServiceCollection AddResendClientUtilAsScoped(this IServiceCollection services)
     {
