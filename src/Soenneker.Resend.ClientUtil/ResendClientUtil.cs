@@ -12,6 +12,7 @@ using Soenneker.Utils.AsyncSingleton;
 
 namespace Soenneker.Resend.ClientUtil;
 
+/// <inheritdoc cref="IResendClientUtil" />
 public sealed class ResendClientUtil : IResendClientUtil
 {
     private readonly AsyncSingleton<ResendOpenApiClient> _client;
